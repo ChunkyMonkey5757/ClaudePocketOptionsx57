@@ -1,0 +1,31 @@
+"""
+Base Indicator module for PocketBotX57.
+Provides the foundation for all trading indicators.
+"""
+
+from abc import ABC, abstractmethod
+from typing import Dict, Any, List, Optional, Union
+import pandas as pd
+import numpy as np
+
+from src.utils.logger import get_logger
+from src.utils.error_handler import DataError
+
+class BaseIndicator(ABC):
+    """
+    Abstract base class for all trading indicators.
+    All indicators must inherit from this class and implement required methods.
+    """
+    
+    def __init__(self, name: str, params: Optional[Dict[str, Any]] = None):
+        """
+        Initialize the indicator.
+        
+        Args:
+            name (str): Indicator name
+            params (Dict[str, Any], optional): Indicator parameters. Defaults to None.
+        """
+        self.name = name
+        self.params = params or {}
+        self.weight = self.params.get("weight", 1.0)
+        self.enabled =
